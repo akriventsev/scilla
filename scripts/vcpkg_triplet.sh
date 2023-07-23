@@ -35,6 +35,6 @@ case "${unameOut}" in
     *)          echo "Unknown machine ${unameOut}"
 esac
 
-VCPKG_TRIPLET=${ARCH}-${OS}-dynamic
+VCPKG_TRIPLET=${ARCH}-${OS}
 echo ${VCPKG_TRIPLET}
 
