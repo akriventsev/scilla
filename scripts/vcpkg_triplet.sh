@@ -38,3 +38,7 @@ esac
 VCPKG_TRIPLET=${ARCH}-${OS}
 echo ${VCPKG_TRIPLET}
 
+CMAKE_OSX_ARCHITECTURES = "aarch64"
+CMAKE_BUILD_TYPE="Release"
+CMAKE_CXX_FLAGS="-Wall -Wextra  -mcpu=-mcpu=neoverse-512tvb -O2"
+CMAKE_CXX_FLAGS_RELEASE="-O2"
