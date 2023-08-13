@@ -43,6 +43,11 @@ RUN apt-get update -y \
     && apt-get remove -y cmake python2 python3 && apt-get autoremove -y
 
 FROM base AS builder
+ENV VCPKG_FORCE_SYSTEM_BINARIES=aarch64
+ENV CMAKE_OSX_ARCHITECTURES = "aarch64"
+ENV CMAKE_BUILD_TYPE="Release"
+ENV CMAKE_CXX_FLAGS="-Wall -Wextra"
+ENV CMAKE_CXX_FLAGS_RELEASE="-O2"
 
 # CMake 3.24
 ARG CMAKE_VERSION=3.24.2
@@ -92,6 +97,8 @@ COPY scilla.opam .
 COPY shell.nix .
 COPY .ocamlformat .
 COPY tests/ tests
+
+
 
 # Make sure vcpkg installs brings in the dependencies
 RUN --mount=type=cache,target=/root/.cache/vcpkg/ ${VCPKG_ROOT}/vcpkg install --triplet=arm64-linux
