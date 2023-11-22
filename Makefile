@@ -179,7 +179,8 @@ cleanall: clean
 
 # Build a standalone scilla docker
 docker:
-	docker build .
+	DOCKER_BUILDKIT=1  docker buildx build --push --build-arg EXTRA_CMAKE_ARGS="$(cmake_extra_args)" --platform linux/arm64 -t ghcr.io/akriventsev/scilla:v0.13.4 . 
+
 
 # Build a zilliqa-plus-scilla docker based on from zilliqa image ZILLIQA_IMAGE
 zilliqa-docker:
